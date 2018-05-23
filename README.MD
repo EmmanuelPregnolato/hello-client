@@ -1,0 +1,1 @@
+http://localhost:8082/rest/hello/client
