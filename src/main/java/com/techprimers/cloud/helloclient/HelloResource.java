@@ -23,7 +23,10 @@ public class HelloResource {
 	@Autowired
 	private RestTemplate restTemplate;
 
-	@HystrixCommand(fallbackMethod = "fallback")
+	@HystrixCommand(fallbackMethod = "fallback", 
+		groupKey = "Hello",
+		threadPoolKey = "helloThread",
+		commandKey = "hello")
 	@GetMapping
 	public String hello(){
 		
