@@ -23,10 +23,7 @@ public class HelloResource {
 	@Autowired
 	private RestTemplate restTemplate;
 
-	@HystrixCommand(fallbackMethod = "fallback", 
-		groupKey = "Hello",
-		threadPoolKey = "helloThread",
-		commandKey = "hello")
+	@HystrixCommand(fallbackMethod = "fallback")
 	@GetMapping
 	public String hello(){
 		
@@ -35,7 +32,9 @@ public class HelloResource {
 		return restTemplate.getForObject(url, String.class);
 	}
 	
-	public String fallback() {
+	public String fallback(Throwable hystrixCommand) {
+		
+		System.out.println(hystrixCommand.getMessage());
 		return "Fallback hello world!";
 	}
 }
