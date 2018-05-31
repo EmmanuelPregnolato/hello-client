@@ -28,7 +28,7 @@ public class HelloResource {
 	public String hello(){
 		
 		String url = "http://eureka-client/rest/hello/server";
-		//String url = "http://localhost:8081/rest/hello/server";
+
 		return restTemplate.getForObject(url, String.class);
 	}
 	
